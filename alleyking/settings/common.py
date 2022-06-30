@@ -47,7 +47,21 @@ INSTALLED_APPS = [
     'rest_framework',
     # Locals Apps
     'accounts',
+
+    # socialaccount
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # ... include the providers you want to enable:
+    'allauth.socialaccount.providers.auth0',
+    'allauth.socialaccount.providers.kakao',
 ]
+
+LOGIN_REDIRECT_URL = 'home' # 로그인 후 리디렉션할 페이지
+ACCOUNT_LOGOUT_REDIRECT_URL = "home"  # 로그아웃 후 리디렉션 할 페이지
+ACCOUNT_LOGOUT_ON_GET = True # 로그아웃 버튼 클릭 시 자동 로그아웃
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -139,3 +153,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+KAKAO = {
+    'rest_api_key': 'bdc7e2c328f768d31dab2197a07c585e',
+    'callback_url': 'http://localhost:8000/kakaoLoginCallback'
+}
